@@ -1,0 +1,153 @@
+{
+  "server_gate": {
+    "lang": "ar",
+    "something_went_wrong_please_try_again": "حدث خطأ ما، يرجى المحاولة مرة أخرى.",
+    "poor_connection_check_the_quality_of_the_internet": "اتصال ضعيف، تحقق من جودة الإنترنت.",
+    "please_check_your_internet_connection": "يرجى التحقق من اتصالك بالإنترنت."
+  },
+  "add": "إضافة",
+  "see_more": "عرض المزيد",
+  "my_addresses": "عناويني",
+  "home": {
+    "title": "الرئيسية",
+    "explore_now": "استكشف الآن",
+    "search_placeholder": "بحث...",
+    "product_search_placeholder": "ابحث عن منتجات...",
+    "selected_for_you": "مختار لك",
+    "new_arrivals": "وصل حديثاً",
+    "best_sellers": "الأكثر مبيعاً",
+    "prepare_for_winter": "استعد للشتاء",
+    "fakeStore_products": "منتجات المتجر الوهمي",
+    "service_centers": "مراكز الخدمة",
+    "find_nearest_service_center": "ابحث عن أقرب مركز خدمة",
+    "view_service_centers": "عرض مراكز الخدمة",
+    "need_maintenance": "تحتاج صيانة؟",
+    "request_maintenance": "طلب صيانة",
+    "order_now": "اطلب الآن",
+    "categories": "الأقسام",
+    "most_popular": "الأكثر شهرة",
+    "view_all": "عرض الكل"
+  },
+  "auth": {
+    "session_expired": "انتهت الجلسة، يرجى تسجيل الدخول مجدداً.",
+    "title": "تسجيل الدخول",
+    "title_sign_up": "إنشاء حساب",
+    "sub_title_sign_up": "أنشئ حسابك",
+    "sub_title_sign_in": "سجّل دخولك",
+    "forgot_password": "نسيت كلمة المرور؟",
+    "login_button": "تسجيل الدخول",
+    "dont_have_account": "ليس لديك حساب؟",
+    "signup_link": "إنشاء حساب",
+    "or_continue_with": "أو تابع بـ",
+    "sign_in_with_google": "الدخول بجوجل",
+    "sign_in_with_facebook": "الدخول بفيسبوك",
+    "invalid_email_error": "البريد الإلكتروني غير صحيح.",
+    "login_failed": "فشل تسجيل الدخول، يرجى التحقق من بياناتك.",
+    "subtitle": "مرحباً بعودتك!",
+    "name_placeholder": "الاسم الكامل",
+    "email_placeholder": "البريد الإلكتروني",
+    "password_placeholder": "كلمة المرور",
+    "confirm_password_placeholder": "تأكيد كلمة المرور",
+    "phone_placeholder": "رقم الهاتف",
+    "signup_button": "إنشاء حساب",
+    "already_have_account": "لديك حساب بالفعل؟",
+    "login_link": "تسجيل الدخول",
+    "name_required_error": "الاسم مطلوب.",
+    "email_required_error": "البريد الإلكتروني مطلوب.",
+    "password_required_error": "كلمة المرور مطلوبة.",
+    "confirm_password_required_error": "يرجى تأكيد كلمة المرور.",
+    "phone_required_error": "رقم الهاتف مطلوب.",
+    "passwords_mismatch_error": "كلمتا المرور غير متطابقتين.",
+    "account_created_successfully": "تم إنشاء الحساب بنجاح!"
+  },
+  "errors": {
+    "invalid_email": "البريد الإلكتروني غير صحيح.",
+    "password_too_short": "كلمة المرور قصيرة جداً.",
+    "invalid_credentials": "البريد أو كلمة المرور خاطئة.",
+    "network_error": "خطأ في الشبكة.",
+    "check_internet_connection": "يرجى التحقق من اتصالك بالإنترنت.",
+    "something_went_wrong": "حدث خطأ ما.",
+    "server_error": "خطأ في الخادم، يرجى المحاولة لاحقاً.",
+    "timeout_error": "انتهت مهلة الطلب.",
+    "unknown_error": "حدث خطأ غير معروف."
+  },
+  "layout": {
+    "home": "الرئيسية",
+    "categories": "الأقسام",
+    "cart": "السلة",
+    "account": "حسابي"
+  },
+  "common": {
+    "loading": "جاري التحميل...",
+    "camera": "الكاميرا",
+    "gallery": "المعرض",
+    "success": "نجاح"
+  },
+  "account": {
+    "overview": "نظرة عامة",
+    "order_history": "سجل الطلبات",
+    "account_info": "بيانات الحساب",
+    "addresses": "العناوين",
+    "language_menu": "اللغة",
+    "select_language_title": "اختر اللغة"
+  },
+  "cart": {
+    "item_added_success": "تمت إضافة المنتج إلى السلة.",
+    "item_removed_success": "تمت إزالة المنتج من السلة.",
+    "quantity_updated_success": "تم تحديث الكمية.",
+    "quantity_not_available": "هذه الكمية غير متاحة."
+  },
+  "product_list": {
+    "search_placeholder": "ابحث عن منتجات...",
+    "out_of_stock": "نفد من المخزون",
+    "discount_off": "% خصم",
+    "currency_symbol": "ج.م",
+    "sort_title": "الترتيب",
+    "sort_name_asc": "الاسم (أ-ي)",
+    "sort_name_desc": "الاسم (ي-أ)",
+    "sort_price_asc": "السعر (من الأقل)",
+    "sort_price_desc": "السعر (من الأعلى)",
+    "sort_by": "رتّب حسب",
+    "filter_products": "تصفية المنتجات"
+  },
+  "wishlist": {
+    "page_title": "المفضلة"
+  },
+  "product_details": {
+    "page_title": "تفاصيل المنتج",
+    "not_found": "المنتج غير موجود.",
+    "description_tab": "الوصف",
+    "reviews_tab": "التقييمات"
+  },
+  "orders": {
+    "title": "الطلبات",
+    "order_number": "طلب رقم ",
+    "order_date": "تاريخ الطلب",
+    "order_status": "الحالة",
+    "order_total": "الإجمالي",
+    "view_details": "عرض التفاصيل",
+    "no_orders": "لا توجد طلبات بعد.",
+    "pending": "قيد الانتظار",
+    "processing": "قيد المعالجة",
+    "completed": "مكتمل",
+    "cancelled": "ملغي"
+  },
+  "profile": {
+    "title": "الملف الشخصي",
+    "edit_profile": "تعديل الملف",
+    "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "phone": "الهاتف",
+    "change_password": "تغيير كلمة المرور",
+    "logout": "تسجيل الخروج"
+  },
+  "settings": {
+    "title": "الإعدادات",
+    "language": "اللغة",
+    "change_language": "تغيير اللغة"
+  },
+  "category": {
+    "banner_title": "الأقسام",
+    "banner_subtitle": "استكشف أقسامنا"
+  }
+}
