@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { AppConstants } from '../constants/AppConstants';
-import { HelperResponse } from './HelperResponse';
+import {AppConstants} from '../constants/AppConstants';
+import {HelperResponse} from './HelperResponse';
 import LoggingInterceptor from './LoggingInterceptor';
-import { UserModel } from './UserModel';
+import {UserModel} from './UserModel';
 
 /**
  * AxiosServices.js
@@ -14,17 +14,17 @@ class AxiosServices {
     this.instance = axios.create({
       baseURL: AppConstants.baseUrl,
       timeout: 30000,
-      validateStatus: (status) => status >= 100 && status < 600,
+      validateStatus: status => status >= 100 && status < 600,
       headers: {
         'Accept-Charset': 'utf-8',
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
+        Accept: 'application/json',
         'Accept-Language': 'ar',
-        'Connection': 'keep-alive',
+        Connection: 'keep-alive',
         'sec-ch-ua': 'Chromium;v=142, Google Chrome;v=142, Not_A Brand;v=99',
-        'server': 'AmazonS3',
-        'Origin': 'https://www.fakestore.com/',
-        'Referer': 'https://www.fakestore.com/',
+        server: 'AmazonS3',
+        Origin: 'https://m2.alothemes.com/orfarm/english_2/',
+        Referer: 'https://m2.alothemes.com/orfarm/english_2/',
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
         'Access-Control-Allow-Headers': 'Content-Type, Authorization',
@@ -52,7 +52,9 @@ class AxiosServices {
    */
   async updateAuthToken(token) {
     if (token) {
-      this.instance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      this.instance.defaults.headers.common[
+        'Authorization'
+      ] = `Bearer ${token}`;
     } else {
       delete this.instance.defaults.headers.common['Authorization'];
     }
@@ -61,7 +63,7 @@ class AxiosServices {
   async _setupInterceptors() {
     // Request Interceptor
     this.instance.interceptors.request.use(
-      async (config) => {
+      async config => {
         // Only add token if not explicitly skipped
         if (config.skipAuth !== true) {
           // Sync with UserModel (matching Flutter's session management)
@@ -76,28 +78,37 @@ class AxiosServices {
 
         return this.loggingInterceptor.requestInterceptor(config);
       },
-      (error) => {
+      error => {
         return this.loggingInterceptor.errorInterceptor(error);
-      }
+      },
     );
 
     // Response Interceptor
     this.instance.interceptors.response.use(
-      (response) => {
+      response => {
         return this.loggingInterceptor.responseInterceptor(response);
       },
-      async (error) => {
+      async error => {
         return this.loggingInterceptor.errorInterceptor(error);
-      }
+      },
     );
   }
 
   // REST Methods
-  async get(path, { queryParameters = null, headers = null, requireAuth = true, cache = false, retryCount = 0 } = {}) {
+  async get(
+    path,
+    {
+      queryParameters = null,
+      headers = null,
+      requireAuth = true,
+      cache = false,
+      retryCount = 0,
+    } = {},
+  ) {
     try {
       const response = await this.instance.get(path, {
         params: queryParameters,
-        ...(headers && { headers }),
+        ...(headers && {headers}),
         skipAuth: !requireAuth,
       });
       return this._processResponse(response);
@@ -106,14 +117,24 @@ class AxiosServices {
     }
   }
 
-  async post(path, { data = null, formData = null, queryParameters = null, headers = null, requireAuth = true, isFormData = false } = {}) {
+  async post(
+    path,
+    {
+      data = null,
+      formData = null,
+      queryParameters = null,
+      headers = null,
+      requireAuth = true,
+      isFormData = false,
+    } = {},
+  ) {
     try {
       const payload = isFormData ? formData : data;
       const response = await this.instance.post(path, payload, {
         params: queryParameters,
         headers: {
           ...(headers || {}),
-          ...(isFormData && { 'Content-Type': 'multipart/form-data' }),
+          ...(isFormData && {'Content-Type': 'multipart/form-data'}),
         },
         skipAuth: !requireAuth,
       });
@@ -123,11 +144,19 @@ class AxiosServices {
     }
   }
 
-  async put(path, { data = null, queryParameters = null, headers = null, requireAuth = true } = {}) {
+  async put(
+    path,
+    {
+      data = null,
+      queryParameters = null,
+      headers = null,
+      requireAuth = true,
+    } = {},
+  ) {
     try {
       const response = await this.instance.put(path, data, {
         params: queryParameters,
-        ...(headers && { headers }),
+        ...(headers && {headers}),
         skipAuth: !requireAuth,
       });
       return this._processResponse(response);
@@ -136,11 +165,19 @@ class AxiosServices {
     }
   }
 
-  async patch(path, { data = null, queryParameters = null, headers = null, requireAuth = true } = {}) {
+  async patch(
+    path,
+    {
+      data = null,
+      queryParameters = null,
+      headers = null,
+      requireAuth = true,
+    } = {},
+  ) {
     try {
       const response = await this.instance.patch(path, data, {
         params: queryParameters,
-        ...(headers && { headers }),
+        ...(headers && {headers}),
         skipAuth: !requireAuth,
       });
       return this._processResponse(response);
@@ -149,11 +186,14 @@ class AxiosServices {
     }
   }
 
-  async delete(path, { queryParameters = null, headers = null, requireAuth = true } = {}) {
+  async delete(
+    path,
+    {queryParameters = null, headers = null, requireAuth = true} = {},
+  ) {
     try {
       const response = await this.instance.delete(path, {
         params: queryParameters,
-        ...(headers && { headers }),
+        ...(headers && {headers}),
         skipAuth: !requireAuth,
       });
       return this._processResponse(response);
@@ -162,11 +202,15 @@ class AxiosServices {
     }
   }
 
-  async download(urlPath, savePath, { queryParameters = null, headers = null, requireAuth = true } = {}) {
+  async download(
+    urlPath,
+    savePath,
+    {queryParameters = null, headers = null, requireAuth = true} = {},
+  ) {
     try {
       const response = await this.instance.get(urlPath, {
         params: queryParameters,
-        ...(headers && { headers }),
+        ...(headers && {headers}),
         skipAuth: !requireAuth,
         responseType: 'blob', // Mirroring download logic
       });
@@ -179,12 +223,18 @@ class AxiosServices {
   }
 
   _processResponse(response) {
-    const { status, data } = response;
+    const {status, data} = response;
     const stringData = String(data);
 
     // 1. Check for Malformed HTML/Script response (mirroring Flutter's check)
-    if (stringData.includes('DOCTYPE') || stringData.includes('<html') || stringData.includes('<script')) {
-      console.error(`⚠️ [AxiosServices] Malformed response (HTML) received for [${status}]`);
+    if (
+      stringData.includes('DOCTYPE') ||
+      stringData.includes('<html') ||
+      stringData.includes('<script')
+    ) {
+      console.error(
+        `⚠️ [AxiosServices] Malformed response (HTML) received for [${status}]`,
+      );
       return HelperResponse.badRequest({
         statusCode: status,
         message: 'Malformed response received (expected JSON, got HTML).',
@@ -242,7 +292,6 @@ class AxiosServices {
     }
 
     if (status >= 500) {
-      
       return HelperResponse.serverError({
         statusCode: status,
         message: 'Server error, please try again later.',
@@ -262,9 +311,11 @@ class AxiosServices {
       // With validateStatus: true, many errors will actually go to _processResponse
       return this._processResponse(error.response);
     } else if (error.request) {
-      return HelperResponse.noInternet({ message: 'No response from server (Network Error)' });
+      return HelperResponse.noInternet({
+        message: 'No response from server (Network Error)',
+      });
     } else {
-      return HelperResponse.unknownError({ message: error.message });
+      return HelperResponse.unknownError({message: error.message});
     }
   }
 }

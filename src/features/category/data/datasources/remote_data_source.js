@@ -2,16 +2,16 @@
 // Mirrors Flutter's CategoryRemoteDataSource
 
 import ApiClient from '../../../../core/services/ApiClient';
-import { CATEGORIES_QUERY, categoryByIdQuery } from '../models/graphql_queries';
+import {CATEGORIES_QUERY, categoryByIdQuery} from '../models/graphql_queries';
 
 /**
  * Builds full image URL from Magento's raw category image field.
  */
-export const buildCategoryImageUrl = (raw) => {
+export const buildCategoryImageUrl = raw => {
   if (!raw) return null;
   if (raw.startsWith('http')) return raw;
   const cleaned = raw.startsWith('/') ? raw : `/media/catalog/category/${raw}`;
-  return `https://www.fakestore.com${cleaned}`;
+  return `https://m2.alothemes.com/orfarm/english_2${cleaned}`;
 };
 
 /**
@@ -25,7 +25,7 @@ export const getCategories = async () => {
   });
 
   const items = res.data?.items ?? [];
-  const sidebarCategories = items.length > 0 ? (items[0].children ?? []) : [];
+  const sidebarCategories = items.length > 0 ? items[0].children ?? [] : [];
 
   return sidebarCategories;
 };
@@ -34,7 +34,7 @@ export const getCategories = async () => {
  * Fetches a category by its UID (with children and products).
  * Mirrors Flutter's CategoryRemoteDataSource.getCategoryById().
  */
-export const getCategoryById = async (uid) => {
+export const getCategoryById = async uid => {
   const query = categoryByIdQuery(uid);
   const res = await ApiClient.graphQLQuery(query, {
     dataKey: 'categories',

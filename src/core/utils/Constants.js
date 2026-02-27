@@ -1,8 +1,8 @@
 export const AppConstants = {
-  baseUrl: "https://www.fakestore.com",
-  login: "https://www.fakestore.com/api/login",
-  register: "https://www.fakestore.com/api/register",
-  home: "https://www.fakestore.com/api/home?page=1&per_page=10",
+  baseUrl: 'https://m2.alothemes.com/orfarm/english_2',
+  login: 'https://m2.alothemes.com/orfarm/english_2/api/login',
+  register: 'https://m2.alothemes.com/orfarm/english_2/api/register',
+  home: 'https://m2.alothemes.com/orfarm/english_2/api/home?page=1&per_page=10',
 };
 
 /*

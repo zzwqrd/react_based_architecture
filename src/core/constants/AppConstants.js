@@ -3,9 +3,9 @@
  * Mirrors Flutter's AppConstants class.
  */
 export const AppConstants = {
-  baseUrl: 'https://www.fakestore.com',
-  apiUrl: 'https://www.fakestore.com/api',
-  
+  baseUrl: 'https://m2.alothemes.com/orfarm/english_2',
+  apiUrl: 'https://m2.alothemes.com/orfarm/english_2/api',
+
   // Endpoints
   login: '/api/login',
   register: '/api/register',

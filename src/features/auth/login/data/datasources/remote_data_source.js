@@ -2,7 +2,7 @@ import StorageHelper from '../../../../../core/services/StorageHelper';
 import ApiClient from '../../../../../core/services/ApiClient';
 import AxiosServices from '../../../../../core/services/AxiosServices';
 import GraphQLQueries from '../models/graphql_queries';
-import { HelperResponse } from '../../../../../core/services/HelperResponse';
+import {HelperResponse} from '../../../../../core/services/HelperResponse';
 
 /**
  * LoginDataSource.js
@@ -10,22 +10,24 @@ import { HelperResponse } from '../../../../../core/services/HelperResponse';
  * Handles the login flow using GraphQL.
  */
 class LoginDataSource {
-  
   /**
    * Login using email and password.
    * Mirrors the login mutation in Flutter.
    */
-  async login({ email, password }) {
+  async login({email, password}) {
     try {
-      const variables = { email, password };
+      const variables = {email, password};
 
       // استخدام ApiClient و GraphQLQueries مباشرة من الـ Import
-      const response = await ApiClient.graphQLMutation(GraphQLQueries.loginMutation, {
-        variables,
-        requireAuth: false,
-        dataKey: 'generateCustomerToken',
-        fromJson: (json) => json, 
-      });
+      const response = await ApiClient.graphQLMutation(
+        GraphQLQueries.loginMutation,
+        {
+          variables,
+          requireAuth: false,
+          dataKey: 'generateCustomerToken',
+          fromJson: json => json,
+        },
+      );
 
       if (response.isSuccess) {
         const loginResponse = response.data;
@@ -34,7 +36,7 @@ class LoginDataSource {
         if (token) {
           // استخدام StorageHelper مباشرة
           await StorageHelper.setToken(token);
-          
+
           // تحديث الهيدرز
           await AxiosServices.updateAuthToken(token);
 
@@ -45,7 +47,7 @@ class LoginDataSource {
       return response;
     } catch (e) {
       console.error('❌ [LoginDataSource] Login Error:', e);
-      return HelperResponse.unknownError({ message: e.message });
+      return HelperResponse.unknownError({message: e.message});
     }
   }
 
@@ -54,13 +56,13 @@ class LoginDataSource {
    * Mirrors getCustomerData in Flutter.
    */
   async getCustomerData(token = null) {
-    const headers = token ? { Authorization: `Bearer ${token}` } : null;
+    const headers = token ? {Authorization: `Bearer ${token}`} : null;
 
     return await ApiClient.graphQLQuery(GraphQLQueries.customerQuery, {
       headers,
       requireAuth: true,
       dataKey: 'customer',
-      fromJson: (json) => json,
+      fromJson: json => json,
     });
   }
 
@@ -68,15 +70,15 @@ class LoginDataSource {
    * Complete login sequence (login + fetch customer data).
    * Mirrors completeLogin in Flutter.
    */
-  async completeLogin({ email, password }) {
-    const loginResult = await this.login({ email, password });
+  async completeLogin({email, password}) {
+    const loginResult = await this.login({email, password});
 
     if (loginResult.isSuccess) {
       const customerResult = await this.getCustomerData(loginResult.data.token);
-      
+
       if (customerResult.isSuccess) {
         await StorageHelper.setCustomer(customerResult.data);
-        
+
         return HelperResponse.success({
           statusCode: 200,
           data: {
